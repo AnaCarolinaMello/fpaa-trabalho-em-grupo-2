@@ -5,11 +5,15 @@ class Terrain:
     symbols = {
         0: "\033[0m", #Empty terrain
         1: "\033[0m", #Obstacle
-        2: "\033[94m", #Blue
-        3: "\033[96m", #Cyan
-        4: "\033[92m", #Green
-        5: "\033[1m", #Bold
-        9: "\033[91m" #Error
+        2: "\033[94m", 
+        3: "\033[33m", 
+        4: "\033[92m", 
+        5: "\033[35m", 
+        6: "\033[95m",  
+        7: "\033[31m", 
+        8: "\033[36m", 
+        9: "\033[92m", 
+        10: "\033[34m",
     }
 
 
@@ -30,11 +34,11 @@ class Terrain:
                         self.grid[i][k] = inputGrid[iter]
                         iter += 1 
                     else: 
-                        self.grid[i][k] = 9
+                        self.grid[i][k] = 0
                         iter += 1
                     
                 else:
-                    self.grid[i][k] = 9
+                    self.grid[i][k] = 0
 
 
     def printGrid(self):
@@ -62,12 +66,6 @@ class Terrain:
                         hasZero=True
                         self.grid[i][k] = color
                         self.paintGridRec((i,k), color, step)
-
-            
-
-
-
-            
 
     def paintGridRec(self, curentCoords, color, step):
 
