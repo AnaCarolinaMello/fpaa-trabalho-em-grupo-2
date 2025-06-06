@@ -1,8 +1,18 @@
 import terrain
 
-terrain = terrain.Terrain(initalCoords=(0,3), size=10)
+coords = input("Digite as coordenadas inciais (ex: 00 para (0,0)): ")
 
-terrain.buildGridAuto()
+terrain = terrain.Terrain(initalCoords=(int(coords[0]), int(coords[1])), size=int(input("Digite o tamanho do terreno: ")))
+
+buildMode = input("Digite o modo de construir o terreno (1 para automatico, 2 para manual): ")
+
+if int(buildMode) == 2:
+
+    terrain.buildGridManual()
+
+else:
+    
+    terrain.buildGridAuto()
 
 terrain.paint()
 
