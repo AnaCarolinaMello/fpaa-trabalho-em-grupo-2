@@ -40,12 +40,21 @@ class Terrain:
                 else:
                     self.grid[i][k] = 0
 
+    def buildGridAuto(self):
+        inputChance = input("Digite a porcentagem chance de um obstáculo:")
+        for i in range(0, self.size):
+            for k in range(0, self.size):
+                if(random.randint(0,99)<int(inputChance)):
+                    self.grid[i][k] = 1
 
     def printGrid(self):
 
         for i in range(0, self.size):
             for k in range(0, self.size):
-                print(self.symbols[self.grid[i][k]] + str(int(self.grid[i][k])), end='')
+                if(int(self.grid[i][k])<self.symbols.__len__()):
+                    print(self.symbols[self.grid[i][k]] + str(int(self.grid[i][k])), end='')
+                else:
+                    print(str(int(self.grid[i][k])), end='')
                 print('\t', end='')
             print('\n', end='')
 

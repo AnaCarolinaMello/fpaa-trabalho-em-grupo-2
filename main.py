@@ -2,7 +2,7 @@ import terrain
 
 terrain = terrain.Terrain(initalCoords=(0,3), size=10)
 
-terrain.buildGridManual()
+terrain.buildGridAuto()
 
 terrain.paint()
 
