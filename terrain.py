@@ -46,12 +46,28 @@ class Terrain:
             print('\n', end='')
 
     def paint(self):
-        firstColor = random.randrange(2,4)
-        usedColors = {firstColor}
-        self.grid[self.initialCoords] = firstColor
+        color = 2
+        self.grid[self.initialCoords] = color
         step = 1
+        hasZero = True
 
-        self.paintGridRec(self.initialCoords, firstColor, step)
+        self.paintGridRec(self.initialCoords, color, step)
+
+        while hasZero:
+            hasZero=False
+            for i in range(0, self.size):
+                for k in range(0, self.size):
+                    if self.grid[i][k]==0:
+                        color+=1
+                        hasZero=True
+                        self.grid[i][k] = color
+                        self.paintGridRec((i,k), color, step)
+
+            
+
+
+
+            
 
     def paintGridRec(self, curentCoords, color, step):
 
