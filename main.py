@@ -1,11 +1,12 @@
 import terrain
 
-terrain = terrain.Terrain()
+terrain = terrain.Terrain(initalCoords=(0,3))
 
 terrain.buildGridManual()
 
-terrain.printGrid()
+terrain.paint()
+
 
 #Debug input: 123456789012345678901234 
-#Debug input: 1100010110010101010001001
+#Debug input: 1100010010010101010000001
 
