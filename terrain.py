@@ -4,8 +4,8 @@ class Terrain:
 
 
     symbols = {
-        0: "Empty terrain",
-        1: "Obstacle",
+        0: "", #Empty terrain
+        1: "\033[1m", #Obstacle
         2: "\033[94m", #Blue
         3: "\033[96m", #Cyan
         4: "\033[92m", #Green
@@ -28,8 +28,13 @@ class Terrain:
         for i in range(0, self.height):
             for k in range(0, self.width):
                 if(iter<inputGrid.__len__()):
-                    self.grid[i][k] = inputGrid[iter]
-                    iter += 1 
+                    if(int(inputGrid[iter]) in self.symbols):
+                        self.grid[i][k] = inputGrid[iter]
+                        iter += 1 
+                    else: 
+                        self.grid[i][k] = 9
+                        iter += 1
+                    
                 else:
                     self.grid[i][k] = 9
 
@@ -39,7 +44,7 @@ class Terrain:
 
         for i in range(0, self.height):
             for k in range(0, self.width):
-                print(int(self.grid[i][k]), end='')
+                print(self.symbols[self.grid[i][k]] + str(int(self.grid[i][k])), end='')
                 print('\t', end='')
             print('\n', end='')
 
