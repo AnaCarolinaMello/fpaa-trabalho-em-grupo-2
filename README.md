@@ -83,13 +83,23 @@ while hasZero:
 
 ### Pré-requisitos
 - Python 3.6 ou superior
-- Biblioteca NumPy
-- Biblioteca Matplotlib (para visualização gráfica - opcional)
+- Biblioteca NumPy (≥1.21.0)
+- Biblioteca Matplotlib (≥3.5.0) - para visualização gráfica
+- Biblioteca Pillow (≥8.3.0) - para processamento de imagens
 
 ### Instalação das Dependências
 ```bash
-# Instale as dependências necessárias
-pip install numpy matplotlib
+# Clone o repositório
+git clone https://github.com/seu-usuario/fpaa-trabalho-em-grupo-2.git
+cd fpaa-trabalho-em-grupo-2
+
+# Instale as dependências usando o requirements.txt
+pip install -r requirements.txt
+```
+
+**Ou instale manualmente:**
+```bash
+pip install numpy>=1.21.0 matplotlib>=3.5.0 pillow>=8.3.0
 ```
 
 ### Execução
@@ -238,6 +248,7 @@ fpaa-trabalho-em-grupo-2/
 ├── main.py                  # Interface principal do usuário
 ├── terrain.py               # Classe Terrain com algoritmo Flood Fill
 ├── terrain_visualizer.py    # Visualização gráfica (matplotlib)
+├── requirements.txt         # Dependências do projeto
 └── README.md               # Documentação do projeto
 ```
 
@@ -269,7 +280,7 @@ fpaa-trabalho-em-grupo-2/
 - **Complexidade Temporal**: O(n×m) onde n e m são as dimensões do grid
 - **Complexidade Espacial**: O(n×m) para o grid + O(k) para pilha de recursão
 - **Linguagem**: Python 3.6+
-- **Dependências**: NumPy (obrigatório), Matplotlib (opcional)
+- **Dependências**: NumPy (obrigatório), Matplotlib (visualização), Pillow (processamento de imagens)
 - **Visualização**: Console com cores ANSI + Interface gráfica matplotlib
 - **Flexibilidade**: Suporta grids de qualquer tamanho quadrado
 
