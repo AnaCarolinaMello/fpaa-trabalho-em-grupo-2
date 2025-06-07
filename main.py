@@ -1,24 +1,51 @@
 import terrain
+import terrain_visualizer
 
-coords = input("Digite as coordenadas inciais (ex: 00 para (0,0)): ")
+print("=== FLOODFILL - COLORINDO REGIÕES DE TERRENO ===\n")
 
-terrain = terrain.Terrain(initalCoords=(int(coords[0]), int(coords[1])), size=int(input("Digite o tamanho do terreno: ")))
+coords = input("Digite as coordenadas iniciais (ex: 00 para (0,0)): ")
+size = int(input("Digite o tamanho do terreno: "))
+buildMode = input("Digite o modo de construir o terreno (1 para automático, 2 para manual): ")
 
-buildMode = input("Digite o modo de construir o terreno (1 para automatico, 2 para manual): ")
+terrain_obj = terrain.Terrain(initalCoords=(int(coords[0]), int(coords[1])), size=size)
+
+print("\n=== CONSTRUINDO TERRENO ===")
 
 if int(buildMode) == 2:
-
-    terrain.buildGridManual()
-
+    print("Modo Manual: Digite o terreno como uma sequência de números")
+    print("0 = Terreno navegável, 1 = Obstáculo")
+    print(f"Exemplo para grid {size}x{size}: {'0' * (size*size)}")
+    terrain_obj.buildGridManual()
 else:
+    print("Modo Automático: Gerando obstáculos aleatoriamente")
+    terrain_obj.buildGridAuto()
+
+print("\n=== TERRENO INICIAL ===")
+terrain_obj.printGrid()
+
+# Ask for visual mode after terrain is built
+visual_mode = input("\nDeseja visualização gráfica? (s/n): ").lower().strip() == 's'
+
+# Create visualizer if requested
+visualizer = None
+if visual_mode:
+    visualizer = terrain_visualizer.TerrainVisualizer(terrain_obj)
+    print("Visualização gráfica ativada - observe a janela que abriu!")
+    print("As cores serão preenchidas automaticamente conforme o algoritmo executa.")
+    visualizer.show_initial_state()
+
+print(f"\n=== INICIANDO FLOODFILL A PARTIR DE ({terrain_obj.initialCoords[0]}, {terrain_obj.initialCoords[1]}) ===")
+
+terrain_obj.paint(visualizer)
+
+# Show final result
+if visual_mode:
+    visualizer.show_final_result()
     
-    terrain.buildGridAuto()
-
-terrain.paint()
-
-
-#Debug input: 123456789012345678901234 
-#Debug input: 1100010010010101010000001 (5)
-
-
-#11000100100101010100000011100010010010101010000001110001001001010101000000111000100100101010100000011100010010010101010000001100010010010101010000001110001001001010101000000111000100100101010100000011100010010010101010000001110001001001010101000000111000100100101010100000011100010010010101010000001110001001001010101000000111000100100101010100000011100010010010101010000001
+    # Save GIF after visualization is complete
+    print("\n=== SALVANDO GIF ===")
+    visualizer.save_gif('terrain_floodfill.gif', duration=2000)
+    print("GIF salvo! Feche a janela para continuar...")
+    visualizer.close()
+else:
+    terrain_obj.show_final_result()
