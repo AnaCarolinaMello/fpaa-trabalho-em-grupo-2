@@ -96,9 +96,9 @@ class Terrain:
     def paint(self, visualizer=None):
         # Check if initial position is an obstacle
         if self.grid[self.initialCoords[0]][self.initialCoords[1]] == 1:
-            print(f"⚠️  Posição inicial ({self.initialCoords[0]}, {self.initialCoords[1]}) é um obstáculo!")
+            print(f" Posição inicial ({self.initialCoords[0]}, {self.initialCoords[1]}) é um obstáculo!")
             new_coords = self.find_nearest_navigable(self.initialCoords)
-            print(f"✅ Posição mais próxima navegável encontrada: ({new_coords[0]}, {new_coords[1]})")
+            print(f" Posição mais próxima navegável encontrada: ({new_coords[0]}, {new_coords[1]})")
             self.initialCoords = new_coords
         
         color = 2
